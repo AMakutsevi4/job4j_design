@@ -7,7 +7,7 @@ sudo: false
 
 env:
   global:
-    - CODECOV_TOKEN="d4af3de1-293c-4f71-9719-85a131fa4d67"
+    - CODECOV_TOKEN= "d4af3de1-293c-4f71-9719-85a131fa4d67"
 
 # после выполнения сборки запустить скрипт, который будет собирать статистику по JaCoCo
 # Здесь используется сторонний сервис https://codecov.io/
@@ -17,6 +17,6 @@ after_success:
 notifications:
   email:
     recipients:
-      - makutsevich@bk.ru
+      - amakutsevich@bk.ru
     on_success: never # default: change
     on_failure: always # default: always
