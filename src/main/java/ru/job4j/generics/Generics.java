@@ -7,9 +7,9 @@ import java.util.List;
 public class Generics {
     public static void main(String[] args) {
         Generics gen = new Generics();
-        List<Object> first = new ArrayList<>();
-        List<Object> second = new ArrayList<>();
-        List<Object> third = new ArrayList<>();
+        List<Animal> first = new ArrayList<>();
+        List<Predator> second = new ArrayList<>();
+        List<Tiger> third = new ArrayList<>();
         first.add(new Animal());
         second.add(new Predator());
         third.add(new Tiger());
@@ -19,40 +19,43 @@ public class Generics {
         gen.printObject(third);
         System.out.println();
 
-        gen.printBoundedWildCard(first);
+        //   gen.printBoundedWildCard(first);
         gen.printBoundedWildCard(second);
         gen.printBoundedWildCard(third);
         System.out.println();
 
         gen.printLowerBoundedWildCard(first);
         gen.printLowerBoundedWildCard(second);
-        gen.printLowerBoundedWildCard(third);
+        //  gen.printLowerBoundedWildCard(third);
     }
 
-    public void printObject(List<Object> list) {
-        for (Object next : list) {
+    public void printObject(List<?> list) {
+        for (Iterator<?> it = list.iterator(); it.hasNext(); ) {
+            Object next = it.next();
             System.out.println("Текущий элемент: " + next);
         }
     }
 
-    public void printBoundedWildCard(List<?> list) {
-        for (Object next : list) {
+    public void printBoundedWildCard(List<? extends Predator> list) {
+        for (Iterator<? extends Predator> it = list.iterator(); it.hasNext(); ) {
+            Object next = it.next();
             System.out.println("Текущий элемент: " + next);
         }
     }
 
-    public void printLowerBoundedWildCard(List<? super Object> list) {
-        for (Object next : list) {
+    public void printLowerBoundedWildCard(List<? super Predator> list) {
+        for (Iterator<? super Predator> it = list.iterator(); it.hasNext(); ) {
+            Object next = it.next();
             System.out.println("Текущий элемент: " + next);
         }
     }
-}
 
-class Animal {
-}
+    static class Animal {
+    }
 
-class Predator {
-}
+    static class Predator extends Animal {
+    }
 
-class Tiger {
+    static class Tiger extends Predator {
+    }
 }
