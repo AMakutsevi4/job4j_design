@@ -4,9 +4,10 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class SimpleArray<T> implements Iterable {
+public class SimpleArray<T> implements Iterable<T> {
     private final Object[] arrays = new Object[10];
     private int size = 0;
+
 
     public void add(T model) {
         arrays[size] = model;
@@ -20,7 +21,8 @@ public class SimpleArray<T> implements Iterable {
 
     public void remove(int index) {
         Objects.checkIndex(index, size);
-        System.arraycopy(arrays, index + 1, arrays, index, size - 1);
+        System.arraycopy(arrays, index + 1, arrays, index, size - index - 1);
+        size--;
     }
 
     public T get(int index) {
@@ -30,10 +32,10 @@ public class SimpleArray<T> implements Iterable {
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
-
+            private int nextElement;
             @Override
             public boolean hasNext() {
-                return size < arrays.length;
+                return nextElement < size;
             }
 
             @Override
