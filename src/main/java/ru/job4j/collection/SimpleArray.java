@@ -5,7 +5,7 @@ import java.util.*;
 public class SimpleArray<T> implements Iterable<T> {
     private int modCount;
     private int size;
-    private int pointer;
+
     T[] arrays = (T[]) new Object[size];
 
     public T get(int index) {
@@ -15,7 +15,8 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public void add(T model) {
         if (size == arrays.length) {
-            arrays = Arrays.copyOf(arrays, arrays.length + 1);
+            arrays = Arrays.copyOf(arrays, arrays.length + 2);
+            arrays[arrays.length - 1] = null;
         }
         arrays[size++] = model;
         modCount++;
@@ -25,10 +26,11 @@ public class SimpleArray<T> implements Iterable<T> {
     public Iterator<T> iterator() {
         return new Iterator<T>() {
             int expectedModCount = modCount;
+            int pointer;
 
             @Override
             public boolean hasNext() {
-                return pointer < arrays.length;
+                return pointer < size;
             }
 
             @Override
