@@ -6,7 +6,7 @@ public class SimpleArray<T> implements Iterable<T> {
     private int modCount;
     private int size;
 
-    T[] arrays = (T[]) new Object[size];
+    T[] arrays = (T[]) new Object[10];
 
     public T get(int index) {
         Objects.checkIndex(index, size);
@@ -15,7 +15,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public void add(T model) {
         if (size == arrays.length) {
-            arrays = Arrays.copyOf(arrays, arrays.length + 2);
+            arrays = Arrays.copyOf(arrays, arrays.length * 2);
             arrays[arrays.length - 1] = null;
         }
         arrays[size++] = model;
