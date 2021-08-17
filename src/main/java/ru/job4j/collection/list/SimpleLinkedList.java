@@ -23,14 +23,14 @@ public class SimpleLinkedList<E> implements List<E> {
 
     @Override
     public void add(E value) {
-        Node<E> first = new Node<>(value, null);
+        Node<E> newNode = new Node<>(value, null);
         Node<E> last = this.last;
         if (last == null || size == 0) {
-            this.first = first;
+            this.first = newNode;
         } else {
-            this.last.next = first;
+            this.last.next = newNode;
         }
-        this.last = first;
+        this.last = newNode;
         size++;
         modCount++;
     }
