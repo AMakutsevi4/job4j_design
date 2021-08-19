@@ -43,14 +43,14 @@ public class ListUtilsTest {
     public void whenReplaceIf() {
         List<String> input = new ArrayList<>(Arrays.asList("uno"));
         Predicate<String> filter = i -> i.contains("o");
-        ListUtils.replaceIf(input,filter, "uop");
+        ListUtils.replaceIf(input, filter, "uop");
         assertThat(Arrays.asList("uop"), Is.is(input));
     }
     @Test
     public void whenRemoveAll() {
         List<String> input = new ArrayList<>(Arrays.asList("uno", "dos", "tres", "quatro"));
         List<String> elem = new ArrayList<>(Arrays.asList("uno", "dos", "tres", "quatro"));
-        ListUtils.removeAll(input,elem);
+        ListUtils.removeAll(input, elem);
         assertThat(Arrays.asList(), Is.is(input));
     }
 }
