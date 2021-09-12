@@ -1,4 +1,5 @@
 package ru.job4j.collection.three;
+
 import java.util.*;
 
 public class SimpleTree<E> implements Tree<E> {
@@ -11,12 +12,12 @@ public class SimpleTree<E> implements Tree<E> {
     @Override
     public boolean add(E parent, E child) {
         boolean rsl = false;
-        Node<E> oneNode = findBy(parent).get();
-        Node<E> twoNode = new Node<>(child);
-        if (!oneNode.children.contains(twoNode)
-                && findBy(child).isEmpty()) {
-            root.children.add(twoNode);
-            rsl = true;
+        if (findBy(parent).isPresent()) {
+            Node<E> twoNode = new Node<>(child);
+            if (findBy(child).isEmpty()) {
+                root.children.add(twoNode);
+                rsl = true;
+            }
         }
         return rsl;
     }
