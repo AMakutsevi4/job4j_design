@@ -34,7 +34,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
     }
 
     private int indexFor(int hash) {
-      //  return hash & (table.length - 1);
+        //  return hash & (table.length - 1);
         return hash % capacity;
     }
 
@@ -42,18 +42,21 @@ public class SimpleMap<K, V> implements Map<K, V> {
         float size = (float) count / (float) table.length;
         if (size >= LOAD_FACTOR) {
             capacity = capacity * 2;
+            MapEntry<K, V>[] twoTable = new MapEntry[capacity];
+            for (int i = 0; i < table.length; i++) {
+                if (table[i] != null) {
+                    twoTable[indexFor(hash(table[i].key.hashCode()))] = table[i];
+                }
+            }
+            table = twoTable;
         }
     }
 
     @Override
     public V get(K key) {
-        int i = 0;
-        while (i < table.length) {
-            if (table[i] == null || table[i].key != key) {
-                i++;
-                continue;
-            }
-            return table[i].value;
+        if (table[indexFor(hash(key.hashCode()))] != null
+                && table[indexFor(hash(key.hashCode()))].key.equals(key)) {
+            return table[indexFor(hash(key.hashCode()))].value;
         }
         return null;
     }
@@ -61,15 +64,9 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     @Override
     public boolean remove(K key) {
-        int i = 0;
-        while (i < table.length) {
-            if (table[i] == null || table[i].key != key) {
-                i++;
-                continue;
-            }
-            count--;
-            modCount++;
-            table[i] = null;
+        if (table[indexFor(hash(key.hashCode()))] != null
+                && table[indexFor(hash(key.hashCode()))].key.equals(key)) {
+            table[indexFor(hash(key.hashCode()))] = null;
             return true;
         }
         return false;
@@ -79,13 +76,18 @@ public class SimpleMap<K, V> implements Map<K, V> {
     public Iterator<K> iterator() {
 
         class MapIterator implements Iterator {
-
             int iterCount = 0;
-
-            int expectedModCount = modCount;
+            final int expectedModCount = modCount;
 
             public boolean hasNext() {
-                return iterCount < table.length;
+                while (iterCount < table.length) {
+                    if (table[iterCount] == null) {
+                        iterCount++;
+                        continue;
+                    }
+                    return true;
+                }
+                return false;
             }
 
             public Object next() {
@@ -95,9 +97,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                while (table[iterCount] == null) {
-                    iterCount++;
-                }
+
                 return table[iterCount++];
             }
         }
@@ -113,5 +113,5 @@ public class SimpleMap<K, V> implements Map<K, V> {
             this.key = key;
             this.value = value;
         }
-   }
+    }
 }
