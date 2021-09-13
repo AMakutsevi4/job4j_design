@@ -38,6 +38,11 @@ public class SimpleMap<K, V> implements Map<K, V> {
         return hash % capacity;
     }
 
+    private int indexOr(K key) {
+        int q = key == null ? 0 : hash(key.hashCode());
+        return indexFor(q);
+    }
+
     private void expand() {
         float size = (float) count / (float) table.length;
         if (size >= LOAD_FACTOR) {
@@ -54,23 +59,26 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     @Override
     public V get(K key) {
-        if (table[indexFor(hash(key.hashCode()))] != null
-                && table[indexFor(hash(key.hashCode()))].key.equals(key)) {
-            return table[indexFor(hash(key.hashCode()))].value;
+        int index = indexOr(key);
+        if (table[index] == null || !table[index].getKey().equals(key)) {
+            return null;
         }
-        return null;
+        return table[index].getValue();
     }
 
 
     @Override
     public boolean remove(K key) {
-        if (table[indexFor(hash(key.hashCode()))] != null
-                && table[indexFor(hash(key.hashCode()))].key.equals(key)) {
-            table[indexFor(hash(key.hashCode()))] = null;
-            return true;
+        int index = indexOr(key);
+        boolean result = table[index] != null && key.equals(table[index].key);
+        if (result) {
+            table[index] = null;
+            modCount++;
+            count--;
         }
-        return false;
+        return result;
     }
+
 
     @Override
     public Iterator<K> iterator() {
@@ -108,6 +116,13 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
         K key;
         V value;
+
+        public K getKey() {
+            return key;
+        }
+        public V getValue() {
+            return value;
+        }
 
         public MapEntry(K key, V value) {
             this.key = key;
