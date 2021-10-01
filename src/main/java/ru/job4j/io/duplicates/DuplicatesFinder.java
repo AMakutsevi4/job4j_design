@@ -9,3 +9,4 @@ public class DuplicatesFinder {
         Files.walkFileTree(Path.of("."), new DuplicatesVisitor());
     }
 }
+

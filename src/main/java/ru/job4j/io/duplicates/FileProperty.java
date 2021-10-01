@@ -6,7 +6,7 @@ public class FileProperty {
 
     private long size;
 
-    private String name;
+    private final String name;
 
     public FileProperty(long size, String name) {
         this.size = size;
@@ -23,10 +23,6 @@ public class FileProperty {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Override
