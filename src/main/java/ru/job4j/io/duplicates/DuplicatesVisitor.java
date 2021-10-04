@@ -17,7 +17,6 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
             System.out.println("Найдены следующие дубликаты: ");
             System.out.println(fileProperty);
         }
-        System.out.println("File name: " + fileProperty.getName() + ", File size: " + fileProperty.getSize());
         return super.visitFile(file, attrs);
     }
 }
