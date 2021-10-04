@@ -16,11 +16,11 @@ public class ArgsName {
             throw new IllegalArgumentException("Нет данных");
         }
         for (String arg : args) {
-            String[] split = arg.replace("-", "").split("=");
-            if (split.length < 2) {
+            String[] rsl = arg.replace("-", "").split("=");
+            if (rsl.length != 2) {
                 throw new IllegalArgumentException("Отсутствует ключ или значение");
             }
-            values.put(split[0], split[1]);
+            values.put(rsl[0], rsl[1]);
         }
     }
 
