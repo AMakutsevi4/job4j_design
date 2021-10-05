@@ -16,7 +16,7 @@ public class ArgsName {
             throw new IllegalArgumentException("Нет данных");
         }
         for (String arg : args) {
-            String[] rsl = arg.replace("-", "").split("=");
+            String[] rsl = arg.substring(1).split("=");
             if (rsl.length != 2) {
                 throw new IllegalArgumentException("Отсутствует ключ или значение");
             }

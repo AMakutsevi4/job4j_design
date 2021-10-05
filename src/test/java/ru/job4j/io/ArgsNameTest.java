@@ -19,7 +19,7 @@ public class ArgsNameTest {
         jvm.get("Xmx");
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void whenGetValue() {
         ArgsName jvm = ArgsName.of(new String[]{"=value", "-encoding=UTF-8"});
         jvm.get("value");
