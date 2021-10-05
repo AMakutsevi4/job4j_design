@@ -14,9 +14,11 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         FileProperty fileProperty = new FileProperty(file.toFile().length(), file.toFile().getName());
         if (!set.add(fileProperty)) {
-            System.out.println("Найдены следующие дубликаты: ");
-            System.out.println(fileProperty);
+            System.out.println("Найден дубликат: " + fileProperty);
         }
         return super.visitFile(file, attrs);
     }
 }
+
+
+
