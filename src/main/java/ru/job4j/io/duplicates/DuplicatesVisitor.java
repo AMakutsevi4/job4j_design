@@ -5,20 +5,26 @@ import java.nio.file.FileVisitResult;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
-    HashSet<FileProperty> set = new HashSet<>();
+    HashMap<FileProperty, FileProperty> myHashmap = new HashMap<>();
+    List<String> array = new ArrayList<>();
+
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         FileProperty fileProperty = new FileProperty(file.toFile().length(), file.toFile().getName());
-        if (!set.add(fileProperty)) {
-            System.out.println("Найден дубликат: " + fileProperty);
-        }
+        FileProperty fileProperty1 = new FileProperty(file.toFile().lastModified(), file.toFile().getPath());
+                   myHashmap.put(fileProperty, fileProperty1);
+             getMyHashmap();
         return super.visitFile(file, attrs);
     }
+
+    public HashMap<FileProperty, FileProperty> getMyHashmap() {
+        System.out.println(myHashmap);
+        return myHashmap;
+    }
 }
-
-
-
