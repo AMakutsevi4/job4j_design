@@ -11,7 +11,7 @@ public class FileProperty {
     public FileProperty(long size, String name) {
         this.size = size;
         this.name = name;
-    }
+        }
 
     public long getSize() {
         return size;
@@ -19,10 +19,6 @@ public class FileProperty {
 
     public void setSize(long size) {
         this.size = size;
-    }
-
-    public String getName() {
-        return name;
     }
 
     @Override

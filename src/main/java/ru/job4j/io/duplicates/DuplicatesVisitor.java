@@ -8,23 +8,27 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
-    HashMap<FileProperty, FileProperty> myHashmap = new HashMap<>();
-    List<String> array = new ArrayList<>();
-
+    Map<FileProperty, Path> files = new HashMap<>();
+    List<Path> paths = new ArrayList<>();
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         FileProperty fileProperty = new FileProperty(file.toFile().length(), file.toFile().getName());
-        FileProperty fileProperty1 = new FileProperty(file.toFile().lastModified(), file.toFile().getPath());
-                   myHashmap.put(fileProperty, fileProperty1);
-             getMyHashmap();
+        if (files.get(fileProperty) == null) {
+            files.put(fileProperty, file.toAbsolutePath());
+            return super.visitFile(file, attrs);
+        } else {
+            paths.add(file);
+        }
         return super.visitFile(file, attrs);
     }
-
-    public HashMap<FileProperty, FileProperty> getMyHashmap() {
-        System.out.println(myHashmap);
-        return myHashmap;
+    public List<Path> getPaths() {
+        return paths;
+    }
+    public Map<FileProperty, Path> getFiles() {
+        return files;
     }
 }
