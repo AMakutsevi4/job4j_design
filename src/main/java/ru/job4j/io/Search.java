@@ -11,9 +11,7 @@ public class Search {
     private static String index;
 
     public static void main(String[] args) throws IOException {
-        Search validateSearch = new Search();
-        validateSearch.validate(args);
-        System.out.println("Start directory :" + args[0] + "File ends with :" + args[1]);
+        Search.printRsl(args);
         search(file, p -> p.toFile().getName().endsWith(index)).forEach(System.out::println);
     }
 
@@ -35,5 +33,11 @@ public class Search {
             throw new IllegalArgumentException(file + "Not directory %s");
         }
         index = args[1];
+    }
+
+    private static void printRsl(String[] args) {
+        Search validateSearch = new Search();
+        validateSearch.validate(args);
+        System.out.println("Start directory :" + args[0] + "File ends with :" + args[1]);
     }
 }
