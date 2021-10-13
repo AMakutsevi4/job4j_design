@@ -28,17 +28,6 @@ public class Zip {
         }
     }
 
-    public static void packSingleFile(File source, File target) {
-        try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
-            zip.putNextEntry(new ZipEntry(source.getPath()));
-            try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(source))) {
-                zip.write(out.readAllBytes());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     private static void validate(String[] args) throws IllegalArgumentException, IOException {
         if (args.length != 3) {
             throw new IllegalArgumentException("Отсутствуют параметры.");
@@ -47,6 +36,9 @@ public class Zip {
         Path path = Path.of(argsName.get("d"));
         if (!Files.exists(path)) {
             throw new IllegalArgumentException("Каталог не найден: " + path);
+        }
+        if (!Files.isDirectory(path)) {
+            throw new IllegalArgumentException("Директория не найдена: " + path);
         }
         format = argsName.get("e");
         obj = Path.of(argsName.get("o"));
