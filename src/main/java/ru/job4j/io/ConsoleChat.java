@@ -27,6 +27,7 @@ public class ConsoleChat {
         boolean flag = true;
         do {
             readPhrases();
+            System.out.print("Вы - ");
             speak = consoleInput();
             LOG.add("Вы: " + speak);
             flag = !speak.toLowerCase(Locale.ROOT).equals(STOP) && flag;
@@ -38,16 +39,21 @@ public class ConsoleChat {
 
             }
         } while (!speak.toLowerCase(Locale.ROOT).equals(OUT));
+        saveLog();
     }
 
     private String consoleInput() throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        System.out.print("Вы - ");
-        return br.readLine();
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            return br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private void readPhrases() {
-        try (BufferedReader br = new BufferedReader(new FileReader(botAnswers))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(botAnswers, Charset.forName("WINDOWS-1251")))) {
             br.lines().forEach(ANSWERS::add);
         } catch (IOException e) {
             e.printStackTrace();
@@ -62,17 +68,15 @@ public class ConsoleChat {
         }
     }
 
-    private void validate(String[] args) {
+    private static void validate(String[] args) {
         if (args.length != 2) {
             throw new IllegalArgumentException("Root folder is null. Usage java -jar dir.jar ROOT_FOLDER.");
         }
     }
 
     public static void main(String[] args) throws IOException {
+        validate(args);
         ConsoleChat cc = new ConsoleChat(args[1], args[0]);
-        cc.validate(args);
         cc.run();
-        cc.readPhrases();
-        cc.saveLog();
     }
 }
