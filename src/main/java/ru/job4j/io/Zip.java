@@ -28,18 +28,20 @@ public class Zip {
         }
     }
 
-    private static void validate(String[] args) throws IllegalArgumentException {
-        if (args[0].isEmpty() || args[1].isEmpty() || args[2].isEmpty()) {
+    private static void validate(String[] args) throws IllegalArgumentException, IOException {
+        if (args.length != 3) {
             throw new IllegalArgumentException("Отсутствуют параметры.");
         }
         ArgsName argsName = ArgsName.of(args);
+        Path path = Path.of(argsName.get("d"));
+        if (!Files.exists(path)) {
+            throw new IllegalArgumentException("Каталог не найден: " + path);
+        }
+        if (!Files.isDirectory(path)) {
+            throw new IllegalArgumentException("Директория не найдена: " + path);
+        }
         format = argsName.get("e");
         obj = Path.of(argsName.get("o"));
-    }
-
-    private static void makeList(String[] args) throws IOException {
-        ArgsName argsName = ArgsName.of(args);
-        Path path = Path.of(argsName.get("d"));
         list = search(path, p -> !p.toFile().getName().endsWith(format))
                 .stream()
                 .map(Path::toFile)
@@ -48,11 +50,7 @@ public class Zip {
 
     public static void main(String[] args) throws IOException {
         validate(args);
-        System.out.println("Фрхивирование...");
-        makeList(args);
         packFiles(list, new File(args[2].split("=")[1]));
-        if (Files.exists(obj) && obj.toFile().length() > 0) {
-            System.out.println("успешно завершено: " + obj + " " + obj.toFile().length() / 1000000 + " Мегабайт");
-        }
+        System.out.println("Архивирование успешно завершено: " + obj + " " + obj.toFile().length() + " байт");
     }
 }
