@@ -1,4 +1,4 @@
-package ru.job4j.io;
+package ru.job4j.io.chat;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -21,7 +21,7 @@ public class ConsoleChat {
         this.botAnswers = botAnswers;
     }
 
-    public void run() throws IOException {
+    public void run() {
         String speak;
         String botSay;
         boolean flag = true;
@@ -30,6 +30,7 @@ public class ConsoleChat {
             System.out.print("Вы - ");
             speak = consoleInput();
             LOG.add("Вы: " + speak);
+            assert speak != null;
             flag = !speak.toLowerCase(Locale.ROOT).equals(STOP) && flag;
             flag = speak.toLowerCase(Locale.ROOT).equals(CONTINUE) || flag;
             if (flag) {
@@ -42,7 +43,7 @@ public class ConsoleChat {
         saveLog();
     }
 
-    private String consoleInput() throws IOException {
+    private String consoleInput() {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             return br.readLine();
@@ -68,14 +69,8 @@ public class ConsoleChat {
         }
     }
 
-    private static void validate(String[] args) {
-        if (args.length != 2) {
-            throw new IllegalArgumentException("Root folder is null. Usage java -jar dir.jar ROOT_FOLDER.");
-        }
-    }
-
     public static void main(String[] args) throws IOException {
-        validate(args);
+        new Validator().validate(args);
         ConsoleChat cc = new ConsoleChat(args[1], args[0]);
         cc.run();
     }
