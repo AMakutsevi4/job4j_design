@@ -1,4 +1,4 @@
-package ru.job4j.io.Scanner;
+package ru.job4j.io.scanner;
 
 public class ScanValid {
     public void validate(String[] args) {
