@@ -1,4 +1,4 @@
-package ru.job4j.io.Scanner;
+package ru.job4j.io.scanner;
 
 import ru.job4j.io.ArgsName;
 import java.io.*;
