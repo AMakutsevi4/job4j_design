@@ -10,11 +10,25 @@ public class UsageLog4j {
 
     public static void main(String[] args) {
         BasicConfigurator.configure();
-        LOG.trace("trace message");
-        LOG.debug("debug message");
-        LOG.info("info message");
-        LOG.warn("warn message");
-        LOG.error("error message");
-
+        String name = "Alexander Makutsevich";
+        int age = 30;
+        LOG.debug("User info name : {}, age : {}", name, age);
+        boolean booleanVariable = true;
+        byte byteVariable = 127;
+        short shortVariable = 32767;
+        int intVariable = 21474;
+        long longVariable = 100L;
+        double doubleVariable = 2.5;
+        float floatVariable = 12.3f;
+        char charVariable = 'Q';
+        LOG.info("Variable example:");
+        LOG.debug("boolean {}", booleanVariable);
+        LOG.debug("byte {}", byteVariable);
+        LOG.debug("short {}", shortVariable);
+        LOG.debug("int {}", intVariable);
+        LOG.debug("long {}", longVariable);
+        LOG.debug("double {}", doubleVariable);
+        LOG.debug("float {}", floatVariable);
+        LOG.debug("char {}", charVariable);
     }
 }
