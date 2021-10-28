@@ -2,6 +2,7 @@ package ru.job4j.serialization.json;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.json.JSONPropertyIgnore;
 
 import javax.xml.bind.annotation.*;
 import java.util.Arrays;
@@ -18,6 +19,46 @@ public class Car {
     @XmlElementWrapper(name = "production")
     @XmlElement(name = "product")
     private String[] production;
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+    @JSONPropertyIgnore
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
+
+    public boolean isAddOptions() {
+        return addOptions;
+    }
+
+    public void setAddOptions(boolean addOptions) {
+        this.addOptions = addOptions;
+    }
+
+    public int getYearsWarranty() {
+        return yearsWarranty;
+    }
+
+    public void setYearsWarranty(int yearsWarranty) {
+        this.yearsWarranty = yearsWarranty;
+    }
+
+    public String[] getProduction() {
+        return production;
+    }
+
+    public void setProduction(String[] production) {
+        this.production = production;
+    }
 
     public Car(String brand, Engine engine, boolean addOptions, int yearsWarranty, String... production) {
         this.brand = brand;
@@ -66,4 +107,5 @@ public class Car {
         final Car carMod = gson.fromJson(carJson, Car.class);
         System.out.println(carMod);
     }
+
 }
