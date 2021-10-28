@@ -3,14 +3,21 @@ package ru.job4j.serialization.json;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import javax.xml.bind.annotation.*;
 import java.util.Arrays;
 
+@XmlRootElement(name = "Car")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Car {
-    private final String brand;
-    private final Engine engine;
-    private final boolean addOptions;
-    private final int yearsWarranty;
-    private final String[] production;
+
+    @XmlAttribute
+    private String brand;
+    private Engine engine;
+    private boolean addOptions;
+    private int yearsWarranty;
+    @XmlElementWrapper(name = "production")
+    @XmlElement(name = "product")
+    private String[] production;
 
     public Car(String brand, Engine engine, boolean addOptions, int yearsWarranty, String... production) {
         this.brand = brand;
@@ -18,6 +25,10 @@ public class Car {
         this.addOptions = addOptions;
         this.yearsWarranty = yearsWarranty;
         this.production = production;
+    }
+
+    public Car() {
+
     }
 
     @Override
