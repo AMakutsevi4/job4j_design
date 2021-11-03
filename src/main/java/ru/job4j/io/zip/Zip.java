@@ -1,26 +1,35 @@
 package ru.job4j.io.zip;
 
 import ru.job4j.io.ArgsName;
+
 import java.io.*;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+
 import static java.nio.file.Path.of;
 import static ru.job4j.io.Search.search;
 
 /**
  * Параметры для архивирования
- * -d - directory                                       -e - exclude -o - output
- * -d=C:\Users\MakutsevichAI\IdeaProjects\job4j_design4 -e=class -o=project.zip
+ * -d - directory                                             -e - exclude -o - output
+ * -d=C:\IdeaProjects\job4j_design\src\main\java\ru\job4j\io -e=*.java -o=project.zip
  */
 public class Zip {
     private String format;
     private Path obj;
     private List<File> list;
     private Path path;
+
+    public void arguments(String[] args) {
+        ArgsName argsName = ArgsName.of(args);
+        format = argsName.get("e");
+        obj = of(argsName.get("o"));
+        path = of(argsName.get("d"));
+
+    }
 
     public Path getObj() {
         return obj;
@@ -30,14 +39,8 @@ public class Zip {
         return list;
     }
 
-    public void arguments(String[] args) {
-        ArgsName argsName = ArgsName.of(args);
-        format = argsName.get("e");
-        obj = of(argsName.get("o"));
-        path = of(argsName.get("d"));
-        if (Files.isDirectory(path)) {
-            throw new IllegalArgumentException("Отсутствует директория. " + (path));
-        }
+    public Path getPath() {
+        return path;
     }
 
     public void packFiles(List<File> sources, File target) {
