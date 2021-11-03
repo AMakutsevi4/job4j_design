@@ -3,7 +3,7 @@ package ru.job4j.io.zip;
 import java.nio.file.Files;
 
 public class Validate {
-       public void Validator(String[] args) {
+       public void validator(String[] args) {
         Zip zip = new Zip();
         zip.arguments(args);
         if (args.length != 3) {

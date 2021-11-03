@@ -6,7 +6,7 @@ import java.io.IOException;
 public class MainZip {
     public static void main(String[] args) throws IOException {
         Validate validate = new Validate();
-        validate.Validator(args);
+        validate.validator(args);
         Zip zip = new Zip();
         zip.arguments(args);
         zip.makeList();
