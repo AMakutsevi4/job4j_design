@@ -1,34 +1,24 @@
 package ru.job4j.io.zip;
 
-import ru.job4j.io.ArgsName;
-
 import java.io.*;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
-import static java.nio.file.Path.of;
 import static ru.job4j.io.Search.search;
 
-/**
- * Параметры для архивирования
- * -d - directory                                             -e - exclude -o - output
- * -d=C:\IdeaProjects\job4j_design\src\main\java\ru\job4j\io -e=*.java -o=project.zip
- */
+
 public class Zip {
-    private String format;
-    private Path obj;
+    private final String format;
+    private final Path obj;
     private List<File> list;
-    private Path path;
+    private final Path path;
 
-    public void arguments(String[] args) {
-        ArgsName argsName = ArgsName.of(args);
-        format = argsName.get("e");
-        obj = of(argsName.get("o"));
-        path = of(argsName.get("d"));
-
+    public Zip(String format, Path obj, Path path) {
+        this.format = format;
+        this.obj = obj;
+        this.path = path;
     }
 
     public Path getObj() {
