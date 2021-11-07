@@ -36,7 +36,7 @@ public class FileFinder {
         }
     }
 
-    public boolean checkWithRegExp(String result){
+    public boolean checkWithRegExp(String result) {
         Pattern p = Pattern.compile("^[a-z0-9_-]{3,15}$");
         Matcher m = p.matcher(result);
         return m.matches();
