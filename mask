@@ -1,0 +1,7 @@
+SimpleLinkedList.java
+log.txt
+SimpleLinkedList.java
+SimpleLinkedList.java
+App.java
+App.java
+App.java
