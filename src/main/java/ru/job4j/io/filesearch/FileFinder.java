@@ -27,7 +27,7 @@ public class FileFinder {
     }
 
     public void search(String[] args) {
-        checkWithRegExp(directory);
+        checkWithRegExp(nameFile);
         Path start = Paths.get(String.valueOf(directory));
         try {
             arrayList = Search.search(start, p -> p.toFile().getPath().contains(nameFile));
@@ -47,7 +47,6 @@ public class FileFinder {
         try (PrintWriter out = new PrintWriter(new BufferedOutputStream(new FileOutputStream(outFile, true)))) {
             for (Path p : arrayList) {
                 out.println(p.getFileName().toString());
-                out.close();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,7 +55,7 @@ public class FileFinder {
 
     public static void main(String[] args) {
         FileCheck fileCheck = new FileCheck(args);
-        FileFinder file = new FileFinder(fileCheck.getDirectory(), fileCheck.getNameFile(), fileCheck.getRegularExp(), fileCheck.getOutFile());
+        FileFinder file = new FileFinder(fileCheck.getDirectory(), fileCheck.getNameFile(), fileCheck.getOutFile(), fileCheck.getRegularExp());
         file.save(args);
         System.out.println("Done");
     }
