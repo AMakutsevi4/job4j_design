@@ -27,19 +27,20 @@ public class FileFinder {
     }
 
     public void search(String[] args) {
-        checkWithRegExp(nameFile);
-        Path start = Paths.get(String.valueOf(directory));
         try {
-            arrayList = Search.search(start, p -> p.toFile().getPath().contains(nameFile));
+            Path start = Paths.get(String.valueOf(directory));
+            if (regularExp.contains("name")) {
+                arrayList = Search.search(start, p -> p.toFile().getPath().contains(nameFile));
+            } else if (regularExp.equals("mask")) {
+                Pattern pattern = Pattern.compile("[A-j]");
+                Matcher matcher = pattern.matcher(directory);
+                if (matcher.find()) {
+                    arrayList = Search.search(start, p -> p.toFile().getPath().contains(matcher.group()));
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public boolean checkWithRegExp(String result) {
-        Pattern p = Pattern.compile("^[a-z0-9_-]{3,15}$");
-        Matcher m = p.matcher(result);
-        return m.matches();
     }
 
     public void save(String[] args) {
