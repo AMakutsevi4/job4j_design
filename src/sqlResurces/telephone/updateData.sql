@@ -1,1 +1,0 @@
-update telephone set brand = 'Applecopy';
