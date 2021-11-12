@@ -4,9 +4,9 @@ import ru.job4j.io.ArgsName;
 public class FileCheck {
 
     private final String directory;
-    private final String nameFile;
+    private final String searchFile;
     private final String outFile;
-    private final String regularExp;
+    private final String typeSearch;
 
     public FileCheck(String[] args) {
         validateLength(4, args);
@@ -20,8 +20,8 @@ public class FileCheck {
         checkNull(regularExp);
         checkNull(outFile);
         this.directory = directory;
-        this.nameFile = nameFile;
-        this.regularExp = regularExp;
+        this.searchFile = nameFile;
+        this.typeSearch = regularExp;
         this.outFile = outFile;
       }
 
@@ -29,21 +29,21 @@ public class FileCheck {
         return directory;
     }
 
-    public String getNameFile() {
-        return nameFile;
+    public String getSearchFile() {
+        return searchFile;
     }
 
-    public String getRegularExp() {
-        return regularExp;
+    public String getTypeSearch() {
+        return typeSearch;
     }
 
     public String getOutFile() {
         return outFile;
     }
 
-    private void validateLength(int i, String[] args) {
-        if (args.length != i) {
-            throw new IllegalArgumentException("Root folder is null. Usage java -jar dir.jar ROOT_FOLDER.");
+    private void validateLength(int needCount, String[] args) {
+        if (args.length != needCount) {
+            throw new IllegalArgumentException("для работы программы не хватает аргументов, проверьте.");
         }
     }
 
