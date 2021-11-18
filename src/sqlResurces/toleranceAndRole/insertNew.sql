@@ -1,0 +1,12 @@
+insert into role(role) values('Admin');
+insert into role(role) values('User');
+insert into users(users, role_id) VALUES ('Bob', 1);
+insert into rules(rules) values('full');
+insert into rules(rules) values('half');
+insert into role_rules(role_id, rules_id) values(1, 1);
+insert into role_rules(role_id, rules_id) values(2, 2);
+insert into category(category) values('online');
+insert into state(state) values('experienced');
+insert into item(item, users_id, category_id, state_id) values('uno', 1, 1, 1);
+insert into comments(comments, item_id) values('important', 1);
+insert into attachs(attachs, item_id) values(2, 1); 
