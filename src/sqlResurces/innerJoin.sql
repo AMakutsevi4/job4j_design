@@ -1,10 +1,10 @@
-create table sity( p
+create table sity( 
 id serial primary key,
 name varchar(40),
 index int
 );
 
-create table population(  c
+create table population(  
 id serial primary key,
 people int,
 sity_id int references sity(id)
