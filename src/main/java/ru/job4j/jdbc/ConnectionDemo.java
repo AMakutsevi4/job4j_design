@@ -9,7 +9,6 @@ import java.sql.SQLException;
 
 public class ConnectionDemo {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        Class.forName("org.postgresql.Driver");
         Config cfg = new Config("./src/sqlResurces/app.properties");
         cfg.load();
         String url = cfg.value("url");
