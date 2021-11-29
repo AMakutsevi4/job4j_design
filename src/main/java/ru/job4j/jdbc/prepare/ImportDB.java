@@ -1,4 +1,4 @@
-package ru.job4j.jdbc.prepareStatement;
+package ru.job4j.jdbc.prepare;
 
 import java.io.*;
 import java.sql.Connection;

@@ -1,4 +1,4 @@
-package ru.job4j.jdbc.prepareStatement;
+package ru.job4j.jdbc.prepare;
 
 public class City {
     private int id;
