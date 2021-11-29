@@ -22,10 +22,13 @@ public class ImportDB {
     public List<User> load() throws IOException {
         List<User> users = new ArrayList<>();
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
-            while (rd.ready()) {
-                String s = rd.readLine();
-                users.add(new User(s.split(";")[0], s.split(";")[1]));
-            }
+            rd.lines().forEach(e -> {
+                String[] a = e.split(";");
+                if (a.length != 2) {
+                    throw new IllegalArgumentException();
+                }
+                users.add(new User(a[0], a[1]));
+            });
         }
         return users;
     }
@@ -63,7 +66,7 @@ public class ImportDB {
         try (FileInputStream in = new FileInputStream("./src/sqlResurces/spammer.properties")) {
             cfg.load(in);
         }
-        ImportDB db = new ImportDB(cfg, "./src/main/java/ru/job4j/jdbc/prepareStatement/dump.txt");
+        ImportDB db = new ImportDB(cfg, "./src/main/java/ru/job4j/jdbc/prepare/dump.txt");
         db.save(db.load());
     }
 }
