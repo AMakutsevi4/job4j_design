@@ -10,7 +10,7 @@ import java.io.File;
 import java.nio.file.Files;
 
 public class CSVReaderTest {
-/*
+
     @Rule
     public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
@@ -36,9 +36,7 @@ public class CSVReaderTest {
                 "Jack;25",
                 "William;30"
         ).concat(System.lineSeparator());
-        CSVReader csvReader = new CSVReader(argsName);
-        csvReader.handle(argsName);
+        CSVReader.handle(argsName);
         Assert.assertEquals(expected, Files.readString(target.toPath()));
     }
-*/
 }
