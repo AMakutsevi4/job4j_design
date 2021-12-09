@@ -4,12 +4,12 @@ import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-import ru.job4j.io.scanner.CSVReader;
+import ru.job4j.io.scanner.CSVRead;
 
 import java.io.File;
 import java.nio.file.Files;
 
-public class CSVReaderTest {
+public class CSVReadTest {
 
     @Rule
     public TemporaryFolder temporaryFolder = new TemporaryFolder();
@@ -36,7 +36,8 @@ public class CSVReaderTest {
                 "Jack;25",
                 "William;30"
         ).concat(System.lineSeparator());
-        CSVReader.handle(argsName);
+        CSVRead csvReader = new CSVRead(argsName);
+        csvReader.handle();
         Assert.assertEquals(expected, Files.readString(target.toPath()));
     }
 }
