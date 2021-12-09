@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class FileFinder {
     private final String directory;
@@ -24,12 +25,17 @@ public class FileFinder {
 
     public void search() {
         try {
+            Pattern pattern;
             Path start = Paths.get(String.valueOf(directory));
             if (typeSearch.contains("name")) {
                 arrayList = Search.search(start, p -> p.toFile().getPath().contains(searchFile));
-            } else if (typeSearch.equals("mask")) {
-               searchFile = searchMask();
-                arrayList = Search.search(start, p -> p.toFile().getPath().contains(searchFile));
+            } else if ("mask".equals(typeSearch)) {
+                searchFile = searchMask();
+                pattern = Pattern.compile(searchFile);
+                arrayList = Search.search(start, p -> p.toFile().getName().matches(pattern.toString()));
+            } else if ("regex".equals(typeSearch)) {
+                pattern = Pattern.compile(searchFile);
+                arrayList = Search.search(start, p -> p.toFile().getName().matches(pattern.toString()));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -37,15 +43,16 @@ public class FileFinder {
     }
 
     private String searchMask() {
-        return searchFile.replaceAll("\\*", ".*")
-                .replaceAll("\\?", "\\w");
+        String mask = searchFile.replaceAll("\\*", ".\\*");
+        mask = mask.replaceAll("\\?", ".\\?");
+        return mask;
     }
 
     public void save() {
         search();
         try (PrintWriter out = new PrintWriter(new BufferedOutputStream(new FileOutputStream(outFile, true)))) {
             for (Path p : arrayList) {
-                out.println(p.getFileName().toString());
+                out.println(p.getFileName().toAbsolutePath());
             }
         } catch (Exception e) {
             e.printStackTrace();
