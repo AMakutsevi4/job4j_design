@@ -29,4 +29,12 @@ public class User {
     protected void finalize() throws Throwable {
         System.out.printf("Removed %d %s%n", age, name);
     }
+
+    @Override
+    public String toString() {
+        return "User{"
+                + "age=" + age
+                + ", name='" + name + '\''
+                + '}';
+    }
 }

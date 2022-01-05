@@ -16,6 +16,8 @@ public class UserDemo {
     }
 
     public static void main(String[] args) {
+        User user = new User(30, "Alexandr");
+        System.out.println(user);
         for (int i = 0; i < 6000; i++) {
             new User(i, "N " + i);
         }
