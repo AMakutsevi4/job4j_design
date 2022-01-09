@@ -14,6 +14,10 @@ public class SoftDemo {
         example1();
         System.out.println("example2");
         example2();
+        System.out.println("unsafe");
+        unsafe();
+        System.out.println("safe");
+        safe();
     }
 
     private static void example1() {
@@ -44,5 +48,28 @@ public class SoftDemo {
             }
         }
         System.out.println(liveObject);
+    }
+
+    private static void unsafe() {
+        List<SoftReference<Object>> someData = new ArrayList<>();
+        someData.add(new SoftReference<>(new Object()));
+        if (someData.get(0).get() != null) {
+            System.out.println("someData != null");
+        } else {
+            System.out.println("someData == null");
+        }
+        Object object = someData.get(0).get();
+    }
+
+    private static void safe() {
+        List<SoftReference<Object>> someData = new ArrayList<>();
+        someData.add(new SoftReference<>(new Object()));
+        Object strong = someData.get(0).get();
+        if (strong != null) {
+            System.out.println("strong != null");
+        } else {
+            System.out.println("strong == null");
+        }
+        Object object = strong;
     }
 }
