@@ -63,7 +63,6 @@ public class Emulator {
     private void putCache() throws IOException {
         System.out.print("Введите имя файла для добавления в кеш:");
         String file = scanner.nextLine();
-        dirCache.put(file, null);
         dirCache.get(file);
     }
 
