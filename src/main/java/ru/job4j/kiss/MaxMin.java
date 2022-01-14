@@ -1,35 +1,27 @@
 package ru.job4j.kiss;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 public class MaxMin {
 
     public <T> T max(List<T> value, Comparator<T> comparator) {
-        return release(value, comparator, true);
+        return release(value, comparator, integer -> integer < 0);
     }
 
     public <T> T min(List<T> value, Comparator<T> comparator) {
 
-        return release(value, comparator, false);
+        return release(value, comparator, integer -> integer > 0);
     }
 
-    private <T> T release(List<T> value, Comparator<T> comparator, boolean findMax) {
+    private <T> T release(List<T> value, Comparator<T> comparator, Predicate<Integer> predicate) {
         if (value == null || value.isEmpty()) {
             return null;
         }
-        var data = value.iterator();
-        var rsl = data.next();
-        while (data.hasNext()) {
-            var next = data.next();
-            if (findMax) {
-                if (comparator.compare(next, rsl) > 0) {
-                    rsl = next;
-                }
-            }
-            if (!findMax) {
-                if (comparator.compare(next, rsl) < 0) {
-                    rsl = next;
-                }
+        var rsl = value.get(0);
+        for (var temp : value) {
+            if (predicate.test(comparator.compare(rsl, temp))) {
+                rsl = temp;
             }
         }
         return rsl;
