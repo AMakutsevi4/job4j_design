@@ -21,9 +21,8 @@ public class GeneratorTest {
         String test = "I am a ${name}, Who are ${subject}? ";
         Map<String, String> map = Map.of("name", "Alexandr Makutsevich", "subject", "you");
         TextGenerator textGenerator = new TextGenerator();
-        textGenerator.produce(test, map);
         String wait = "I am a Alexandr Makutsevich, Who are you? ";
-        assertThat(textGenerator, is(wait));
+        assertThat(textGenerator.produce(test, map), is(wait));
     }
 
     @Ignore
