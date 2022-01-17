@@ -9,14 +9,14 @@ public class ImageService {
     /**
      * вернуть изображение
      */
-    public static void GetImage(String path) {
+    public static void getImage(String path) {
 
     }
 
     /**
      * сохранить изображение
      */
-    public static void SaveImage(Image img) {
+    public static void saveImage(Image img) {
 
     }
 }

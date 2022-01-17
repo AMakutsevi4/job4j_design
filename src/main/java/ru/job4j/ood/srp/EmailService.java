@@ -8,7 +8,7 @@ public class EmailService {
     /**
      * отправить email
      */
-    public static void SendEmailMessage(String address, String subject, String text) {
+    public static void sendEmailMessage(String address, String subject, String text) {
 
     }
 }

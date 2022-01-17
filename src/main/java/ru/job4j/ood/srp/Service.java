@@ -12,21 +12,21 @@ public class Service {
     /**
      * вернуть изображение
      */
-    public static void GetImage(String path) {
+    public static void getImage(String path) {
 
     }
 
     /**
      * сохранить изображение
      */
-    public static void SaveImage(Image img) {
+    public static void gaveImage(Image img) {
 
     }
 
     /**
      * отправить email
      */
-    public static void SendEmailMessage(String address, String subject, String text) {
+    public static void sendEmailMessage(String address, String subject, String text) {
 
     }
 }
