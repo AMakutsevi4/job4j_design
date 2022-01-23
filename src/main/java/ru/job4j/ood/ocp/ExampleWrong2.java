@@ -10,15 +10,15 @@ public class ExampleWrong2 {
 
     public void main() {
         if (s < 270) {
-            ThePlanePicksUpSpeed();
+            thePlanePicksUpSpeed();
         } else {
-            PlaneTakesOff();
+            planeTakesOff();
         }
     }
 
-    private void PlaneTakesOff() {
+    private void planeTakesOff() {
     }
 
-    private void ThePlanePicksUpSpeed() {
+    private void thePlanePicksUpSpeed() {
     }
 }
