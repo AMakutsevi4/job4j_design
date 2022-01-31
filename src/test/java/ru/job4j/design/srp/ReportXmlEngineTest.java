@@ -1,6 +1,5 @@
 package ru.job4j.design.srp;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
@@ -8,7 +7,7 @@ import static org.junit.Assert.assertThat;
 
 public class ReportXmlEngineTest {
 
-    @Ignore
+
     @Test
     public void whenXMLThenGenerated() {
         MemStore store = new MemStore();

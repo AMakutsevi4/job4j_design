@@ -21,53 +21,48 @@ public class ReportXmlEngine implements Report {
 
     @Override
     public String generate(Predicate<Employee> filter) {
-        List<Employee> employees;
         String xml = "";
-        for (Employee employee : store.findBy(filter)) {
-            employees = List.of(new Employee(employee.getName(),
-                    employee.getHired(), employee.getFired(), employee.getSalary()));
-            JAXBContext context = null;
-            try {
-                context = JAXBContext.newInstance(Employees.class);
-            } catch (JAXBException e) {
-                e.printStackTrace();
-            }
-            Marshaller marshaller = null;
-            try {
-                marshaller = context.createMarshaller();
-            } catch (JAXBException e) {
-                e.printStackTrace();
-            }
-            try {
-                marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            } catch (PropertyException e) {
-                e.printStackTrace();
-            }
+        JAXBContext context = null;
+        try {
+            context = JAXBContext.newInstance(Employees.class);
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+        Marshaller marshaller = null;
+        try {
+            marshaller = context.createMarshaller();
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+        try {
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        } catch (PropertyException e) {
+            e.printStackTrace();
+        }
 
-            try (StringWriter writer = new StringWriter()) {
-                try {
-                    marshaller.marshal(new Employees(employees), writer);
-                } catch (JAXBException e) {
-                    e.printStackTrace();
-                }
-                xml = writer.getBuffer().toString();
-            } catch (IOException e) {
+        try (StringWriter writer = new StringWriter()) {
+            try {
+                marshaller.marshal(new Employees(store.findBy(filter)), writer);
+            } catch (JAXBException e) {
                 e.printStackTrace();
             }
+            xml = writer.getBuffer().toString();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return xml;
     }
+}
 
-    @XmlRootElement(name = "employees")
-    public static class Employees {
-        @XmlElement(name = "employee")
-        private List<Employee> employees = null;
+@XmlRootElement(name = "employees")
+ class Employees {
+    @XmlElement(name = "employee")
+    private List<Employee> employees = null;
 
-        public Employees() {
-        }
+    public Employees() {
+    }
 
-        public Employees(List<Employee> employees) {
-            this.employees = employees;
-        }
+    public Employees(List<Employee> employees) {
+        this.employees = employees;
     }
 }
