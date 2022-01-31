@@ -18,7 +18,7 @@ public class ExampleWrongLsp2 {
         }
     }
 
-    class water extends Coffee {
+    class Water extends Coffee {
         public String cook(String taste) {
             return "water";
         }
