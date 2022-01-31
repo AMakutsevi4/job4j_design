@@ -2,7 +2,6 @@ package ru.job4j.design.srp;
 
 import org.junit.Test;
 
-import javax.xml.bind.JAXBException;
 import java.util.Calendar;
 
 import static org.hamcrest.Matchers.is;
@@ -12,7 +11,7 @@ import static org.junit.Assert.assertThat;
 public class ReportHRTest {
 
     @Test
-    public void whenGenerateHR() throws JAXBException {
+    public void whenGenerateHR() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);

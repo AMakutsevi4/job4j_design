@@ -4,13 +4,12 @@ import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 import org.junit.Test;
 
-import javax.xml.bind.JAXBException;
 import java.util.Calendar;
 
 public class ReportEngineTest {
 
     @Test
-    public void whenOldGenerated() throws JAXBException {
+    public void whenOldGenerated() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
