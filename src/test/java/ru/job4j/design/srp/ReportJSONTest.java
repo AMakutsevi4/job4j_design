@@ -1,7 +1,5 @@
 package ru.job4j.design.srp;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
@@ -15,11 +13,7 @@ public class ReportJSONTest {
         Employee worker = new Employee("Ivan", null, null, 100);
         store.add(worker);
         Report engine = new ReportBooker(store);
-        SerializationSON json = new SerializationSON();
-        final Gson gson = new GsonBuilder().create();
-        String strJson = json.generate(engine.generate(e -> true));
-        String rsl = gson.fromJson(strJson, String.class);
         String exp = "Name; Hired; Fired; Salary;\r\nIvan;null;null;7500.0;\r\n";
-        assertThat(rsl, is(exp));
+        assertThat(engine.generate(e -> true), is(exp));
     }
 }
