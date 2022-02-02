@@ -7,13 +7,22 @@ import java.nio.file.Path;
 import java.util.Scanner;
 
 public class CSVReader {
-/**  -path=./src/data/table.csv -delimiter=";"  -out=stdout -filter=name,age */
+    /**
+     * -path=./src/data/table.csv -delimiter=";"  -out=stdout -filter=name,age
+     */
+    private static Path directory;
+    private static String delimiter;
+    private static String flag;
+    private static String[] filter;
 
-    public static void handle(ArgsName argsName) {
-        Path directory = Path.of(argsName.get("path"));
-        String delimiter = argsName.get("delimiter");
-        String flag = argsName.get("out");
-        String[] filter = argsName.get("filter").split(",");
+    public CSVReader(ArgsName argsName) {
+        directory = Path.of(argsName.get("path"));
+        delimiter = argsName.get("delimiter");
+        flag = argsName.get("out");
+        filter = argsName.get("filter").split(",");
+    }
+
+    public void handle(ArgsName argsName) {
         StringBuilder builder = new StringBuilder();
         String[] header = null;
         try (Scanner scanner = new Scanner(directory).useDelimiter(System.lineSeparator())) {
@@ -48,7 +57,8 @@ public class CSVReader {
     }
 
     private static void save(StringBuilder builder, String target) {
-        if (target.equals("stdout")) {
+
+        if (target.equals(flag)) {
             System.out.println(builder);
         } else {
             try (PrintWriter printWriter = new PrintWriter(new FileOutputStream(target))) {
@@ -63,6 +73,7 @@ public class CSVReader {
         Valid valid = new Valid();
         valid.reliability(args);
         ArgsName argsName = ArgsName.of(args);
-        handle(argsName);
+        CSVReader csvReader = new CSVReader(argsName);
+        csvReader.handle(argsName);
     }
 }
