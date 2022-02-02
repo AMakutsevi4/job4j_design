@@ -59,13 +59,13 @@ public class CSVReader {
     private static void save(StringBuilder builder, String target) {
 
         if (target.equals(flag)) {
-            System.out.println(builder);
-        } else {
             try (PrintWriter printWriter = new PrintWriter(new FileOutputStream(target))) {
                 printWriter.print(builder);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
+        } else {
+            System.out.println(builder);
         }
     }
 

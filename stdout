@@ -1,6 +1,3 @@
-name
-age
-Ivanov
-33
-Petrov
-19
+name;age
+Ivanov;33
+Petrov;19
