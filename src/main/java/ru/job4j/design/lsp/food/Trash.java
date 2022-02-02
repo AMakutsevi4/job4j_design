@@ -5,10 +5,15 @@ import java.util.List;
 
 public class Trash implements Distribution {
 
-    List<Food> trash = new ArrayList<>();
+    private final List<Food> trash = new ArrayList<>();
 
     @Override
     public boolean add(Food food) {
-        return trash.add(food);
+        return accept(food) && trash.add(food);
+    }
+
+    @Override
+    public boolean accept(Food food) {
+        return checkDate(food) > 75;
     }
 }
