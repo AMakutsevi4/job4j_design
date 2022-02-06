@@ -1,8 +1,18 @@
 package ru.job4j.design.lsp.car;
 
 public class TrackCar implements Car {
+
+    private final int size;
+
+    public TrackCar(int size) {
+        if (size <= 1) {
+            System.out.println("Размер грузовика должен быть больше 1");
+        }
+        this.size = size;
+    }
+
     @Override
     public int getSize() {
-        return 2;
+        return size;
     }
 }
