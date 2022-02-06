@@ -9,15 +9,19 @@ public class Shop implements Distribution {
 
     @Override
     public boolean add(Food food) {
-
+        if (checkDate(food) > 75 && checkDate(food) < 100) {
+            food.setPrice((int) (food.getPrice() - food.getDiscount()));
+        }
         return accept(food) && shop.add(food);
     }
 
     @Override
     public boolean accept(Food food) {
-        if (checkDate(food) > 75) {
-            food.setPrice((int) (food.getPrice() - food.getDiscount()));
-        }
-        return checkDate(food) > 25 && checkDate(food) < 75;
+        return checkDate(food) >= 25 && checkDate(food) <= 75;
+    }
+
+    @Override
+    public List<Food> getAllFood() {
+        return shop;
     }
 }

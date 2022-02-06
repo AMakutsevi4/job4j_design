@@ -14,6 +14,11 @@ public class Trash implements Distribution {
 
     @Override
     public boolean accept(Food food) {
-        return checkDate(food) > 75;
+        return checkDate(food) >= 100;
+    }
+
+    @Override
+    public List<Food> getAllFood() {
+        return trash;
     }
 }

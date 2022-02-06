@@ -16,4 +16,9 @@ public class Warehouse implements Distribution {
     public boolean accept(Food food) {
         return checkDate(food) < 25;
     }
+
+    @Override
+    public List<Food> getAllFood() {
+        return warehouse;
+    }
 }
