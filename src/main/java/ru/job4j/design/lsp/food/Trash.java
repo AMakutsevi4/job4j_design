@@ -19,6 +19,6 @@ public class Trash implements Distribution {
 
     @Override
     public List<Food> getAllFood() {
-        return trash;
+        return new ArrayList<>(trash);
     }
 }

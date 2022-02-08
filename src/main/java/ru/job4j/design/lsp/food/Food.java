@@ -1,6 +1,5 @@
 package ru.job4j.design.lsp.food;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Food {
@@ -51,7 +50,7 @@ public class Food {
         this.price = price;
     }
 
-    public double getDiscount() {
+    public int getDiscount() {
         return discount;
     }
 
@@ -69,5 +68,4 @@ public class Food {
                 + ", discount=" + discount
                 + '}';
     }
-
 }

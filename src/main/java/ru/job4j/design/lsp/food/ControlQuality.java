@@ -12,7 +12,9 @@ public class ControlQuality {
 
     public void distribution(Food food) {
         for (Distribution distribution : distributionList) {
-            distribution.add(food);
+            if (distribution.accept(food)) {
+                distribution.add(food);
+            }
         }
     }
 }

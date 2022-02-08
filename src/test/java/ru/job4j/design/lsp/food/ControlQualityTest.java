@@ -27,18 +27,21 @@ public class ControlQualityTest {
     public void whenControl() {
         List<Distribution> list = new ArrayList<>();
         Food cheese = new Cheese("Российский", LocalDateTime.now(), LocalDateTime.now().plusDays(2), 550, 20);
-        Food meat = new Meat("Говядина", LocalDateTime.now(), LocalDateTime.now().minusDays(90), 640, 30);
-        Food milk = new Milk("Простоквашино 2,5 %", LocalDateTime.now(), LocalDateTime.now().plusDays(30), 94, 50);
-        list.add(new Trash());
-        list.add(new Shop());
-        list.add(new Warehouse());
+        Food meat = new Meat("Свинина", LocalDateTime.now().minusDays(3), LocalDateTime.now().plusDays(2), 600, 30);
+        Food milk = new Milk("Простоквашино 2,5 %", LocalDateTime.now().plusDays(1), LocalDateTime.now(), 94, 50);
+        Shop shop = new Shop();
+        Warehouse warehouse = new Warehouse();
+        Trash trash = new Trash();
+        list.add(shop);
+        list.add(warehouse);
+        list.add(trash);
         ControlQuality control = new ControlQuality(list);
         control.distribution(cheese);
         control.distribution(meat);
         control.distribution(milk);
-        assertEquals(0, new Warehouse().getAllFood().size());
-        assertEquals(0, new Shop().getAllFood().size());
-        assertEquals(0, new Trash().getAllFood().size());
+        assertEquals(2, warehouse.getAllFood().size());
+        assertEquals(0, shop.getAllFood().size());
+        assertEquals(1, trash.getAllFood().size());
     }
 
     @Test
@@ -70,20 +73,20 @@ public class ControlQualityTest {
     @Ignore
     @Test
     public void whenAddThenShop() {
-        Food food = new Milk("Простоквашино 2,5 %", LocalDateTime.now(), LocalDateTime.now().minusDays(3), 94, 50);
+        Food meat = new Meat("Говядина", LocalDateTime.now().plusDays(54), LocalDateTime.now().plusDays(22), 640, 30);
         Distribution warehouse = new Warehouse();
         Distribution shop = new Shop();
         Distribution trash = new Trash();
         ControlQuality controlQuality = new ControlQuality(List.of(warehouse, shop, trash));
-        controlQuality.distribution(food);
+        controlQuality.distribution(meat);
         assertEquals(1, shop.getAllFood().size());
     }
 
     @Ignore
     @Test
     public void whenDiscount() {
-        Food food = new Milk("Простоквашино 2,5 %", LocalDateTime.now().plusDays(3), LocalDateTime.now(), 94, 20);
-        food.setDiscount(50);
+        Food food = new Milk("Простоквашино 2,5 %", LocalDateTime.now(), LocalDateTime.now().plusDays(1), 94, 20);
+        food.setDiscount(20);
         Distribution warehouse = new Warehouse();
         Distribution shop = new Shop();
         Distribution trash = new Trash();

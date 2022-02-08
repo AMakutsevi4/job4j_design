@@ -17,6 +17,4 @@ public interface Distribution {
         int deyPassed = days.get(Calendar.DAY_OF_MONTH) - shelfLife;
         return deyPassed / shelfLife * 100;
     }
-
-
 }

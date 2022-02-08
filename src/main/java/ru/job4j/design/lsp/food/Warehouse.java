@@ -19,6 +19,6 @@ public class Warehouse implements Distribution {
 
     @Override
     public List<Food> getAllFood() {
-        return warehouse;
+        return new ArrayList<>(warehouse);
     }
 }
