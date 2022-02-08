@@ -22,11 +22,10 @@ public class ParkTest  {
     }
 
     @Test
-    public void whenThereParkingSpaceFullPassengerThenTrue() {
-        Park park = new Park(2, 2);
+    public void whenThereParkingSpacePassenger2SizeTrack5ThenTrue() {
+        Park park = new Park(2, 5);
         assertTrue(park.parkCar(new PassengerCar()));
         assertTrue(park.parkCar(new PassengerCar()));
-        assertTrue(park.parkCar(new PassengerCar()));
-        assertTrue(park.parkCar(new PassengerCar()));
+        assertTrue(park.parkCar(new TrackCar(5)));
     }
 }

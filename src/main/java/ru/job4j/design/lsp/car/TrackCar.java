@@ -2,7 +2,7 @@ package ru.job4j.design.lsp.car;
 
 public class TrackCar implements Car {
 
-    public final int size;
+    public int size;
 
     public TrackCar(int size) {
         if (size <= 1) {
