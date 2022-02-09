@@ -19,6 +19,16 @@ public class Park implements Parking {
 
     @Override
     public boolean parkCar(Car car) {
-        return true;
+        int onlyPassengerPlace = passengerPlace - passengerStorage.size();
+        int onlyTrackPlace = trackPlace - trackStorage.size();
+        if (car.getSize() == PassengerCar.SIZE && onlyPassengerPlace >= PassengerCar.SIZE) {
+            passengerStorage.add(car);
+            return true;
+        }
+        if (car.getSize() > PassengerCar.SIZE && onlyTrackPlace > 0) {
+            trackStorage.add(car);
+            return true;
+        }
+        return false;
     }
 }
