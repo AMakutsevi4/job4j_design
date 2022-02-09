@@ -1,6 +1,7 @@
 package ru.job4j.design.lsp.food;
 
-import java.util.Calendar;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface Distribution {
@@ -12,9 +13,10 @@ public interface Distribution {
     List<Food> getAllFood();
 
     default int checkDate(Food food) {
-        Calendar days = Calendar.getInstance();
-        int shelfLife = food.getExpiryDate().getDayOfYear() - food.getCreateDate().getDayOfYear();
-        int deyPassed = days.get(Calendar.DAY_OF_MONTH) - shelfLife;
-        return deyPassed / shelfLife * 100;
+        LocalDateTime currentDate = LocalDateTime.now();
+        Duration shelfLife = Duration.between(food.getCreateDate(), food.getExpiryDate());
+        Duration deyPassed = Duration.between(currentDate, food.getCreateDate());
+        return Math.abs((int) ((int) deyPassed.toHours() / (shelfLife.toHours() * 0.01)));
+
     }
 }

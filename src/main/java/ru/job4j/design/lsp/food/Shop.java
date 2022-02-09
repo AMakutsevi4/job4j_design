@@ -17,7 +17,7 @@ public class Shop implements Distribution {
 
     @Override
     public boolean accept(Food food) {
-        return checkDate(food) >= 25 && checkDate(food) <= 75;
+        return checkDate(food) >= 25 && checkDate(food) <= 75 || checkDate(food) > 75 && checkDate(food) < 100;
     }
 
     @Override
