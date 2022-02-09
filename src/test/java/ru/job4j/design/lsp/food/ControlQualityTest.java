@@ -25,7 +25,8 @@ public class ControlQualityTest {
     @Test
     public void whenControl() {
         List<Distribution> list = new ArrayList<>();
-        Food cheese = new Cheese("Российский", LocalDateTime.now(), LocalDateTime.now().plusDays(2), 550, 20);
+        Food cheese = new Cheese("Российский", LocalDateTime.of(2022, 2, 27, 15, 0),
+                LocalDateTime.of(2022, 12, 1, 10, 0), 550, 20);
         Food meat = new Meat("Говядина", LocalDateTime.now().plusDays(54), LocalDateTime.now().plusDays(22), 640, 30);
         Food milk = new Milk("Простоквашино 2,5 %", LocalDateTime.now().plusDays(1), LocalDateTime.now(), 94, 50);
         Shop shop = new Shop();
