@@ -29,6 +29,12 @@ public class Park implements Parking {
             trackStorage.add(car);
             return true;
         }
+        if (car.getSize() > PassengerCar.SIZE && trackStorage.isEmpty()) {
+            if (onlyPassengerPlace >= car.getSize()) {
+                passengerStorage.add(car);
+            }
+            return true;
+        }
         return false;
     }
 }

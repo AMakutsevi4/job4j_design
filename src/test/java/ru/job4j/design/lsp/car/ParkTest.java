@@ -28,4 +28,11 @@ public class ParkTest  {
         assertTrue(park.parkCar(new PassengerCar()));
         assertTrue(park.parkCar(new TrackCar(5)));
     }
+
+    @Test
+    public void whenThereTrackSpaceFullThenSpacePassengerEmpty() {
+        Park park = new Park(4, 2);
+        assertTrue(park.parkCar(new TrackCar(4)));
+        assertTrue(park.parkCar(new TrackCar(2)));
+    }
 }
