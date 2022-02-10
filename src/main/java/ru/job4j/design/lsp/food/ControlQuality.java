@@ -9,7 +9,7 @@ public class ControlQuality {
 
     public ControlQuality(List<Distribution> distributionList) {
         this.distributionList = distributionList;
-     }
+    }
 
     public void distribution(Food food) {
         for (Distribution distribution : distributionList) {
@@ -18,16 +18,15 @@ public class ControlQuality {
             }
         }
     }
-/**
+
     public void resort() {
         List<Food> foodList = new ArrayList<>();
         for (Distribution distribution : distributionList) {
-            foodList.addAll(distribution);
+            foodList.addAll(distribution.getAllFood());
             distributionList.clear();
         }
-        for(Food food : foodList) {
+        for (Food food : foodList) {
             distribution(food);
         }
     }
- */
 }

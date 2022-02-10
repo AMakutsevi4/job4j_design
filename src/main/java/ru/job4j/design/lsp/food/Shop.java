@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Shop implements Distribution {
 
-    private final List<Food> shop = new ArrayList<>();
+    private List<Food> shop = new ArrayList<>();
 
     @Override
     public boolean add(Food food) {
@@ -23,5 +23,10 @@ public class Shop implements Distribution {
     @Override
     public List<Food> getAllFood() {
         return new ArrayList<>(shop);
+    }
+
+    @Override
+    public void deleteAllFood() {
+        shop = new ArrayList<>();
     }
 }
