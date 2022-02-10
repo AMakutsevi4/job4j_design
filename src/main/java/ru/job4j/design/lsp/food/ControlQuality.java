@@ -23,7 +23,7 @@ public class ControlQuality {
         List<Food> foodList = new ArrayList<>();
         for (Distribution distribution : distributionList) {
             foodList.addAll(distribution.getAllFood());
-            distributionList.clear();
+            distribution.deleteAllFood();
         }
         for (Food food : foodList) {
             distribution(food);

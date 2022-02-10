@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Trash implements Distribution {
 
-    private List<Food> trash = new ArrayList<>();
+    private final List<Food> trash = new ArrayList<>();
 
     @Override
     public boolean add(Food food) {
@@ -24,6 +24,6 @@ public class Trash implements Distribution {
 
     @Override
     public void deleteAllFood() {
-        trash = new ArrayList<>();
+        trash.clear();
     }
 }
