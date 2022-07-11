@@ -12,11 +12,12 @@ public interface Distribution {
 
     List<Food> getAllFood();
 
+    void deleteAllFood();
+
     default int checkDate(Food food) {
         LocalDateTime currentDate = LocalDateTime.now();
         Duration shelfLife = Duration.between(food.getCreateDate(), food.getExpiryDate());
         Duration deyPassed = Duration.between(currentDate, food.getCreateDate());
         return Math.abs((int) ((int) deyPassed.toHours() / (shelfLife.toHours() * 0.01)));
-
     }
 }

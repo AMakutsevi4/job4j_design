@@ -21,4 +21,9 @@ public class Trash implements Distribution {
     public List<Food> getAllFood() {
         return new ArrayList<>(trash);
     }
+
+    @Override
+    public void deleteAllFood() {
+        trash.clear();
+    }
 }

@@ -24,4 +24,9 @@ public class Shop implements Distribution {
     public List<Food> getAllFood() {
         return new ArrayList<>(shop);
     }
+
+    @Override
+    public void deleteAllFood() {
+        shop.clear();
+    }
 }

@@ -21,4 +21,9 @@ public class Warehouse implements Distribution {
     public List<Food> getAllFood() {
         return new ArrayList<>(warehouse);
     }
+
+    @Override
+    public void deleteAllFood() {
+        warehouse.clear();
+    }
 }
