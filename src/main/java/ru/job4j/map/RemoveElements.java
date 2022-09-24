@@ -4,24 +4,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class Merge {
-    public static Map<Integer, String> collectData(Map<Integer, String> names, List<User> users) {
-        for (User u : users) {
-            names.putIfAbsent(u.getId(), u.getName());
-            names.merge(u.getId(), u.getSurname(), (oldV, newV) -> oldV + " " + newV);
-        }
-        return names;
+public class RemoveElements {
+    public static Map<Integer, String> removeElement(Map<Integer, String> data,
+                                                     List<Integer> ids,
+                                                     List<User> users) {
+        return data;
     }
 
     public static class User {
-        private final int id;
-        private final String name;
-        private final String surname;
+        private int id;
+        private String name;
 
-        public User(int id, String name, String surname) {
+        public User(int id, String name) {
             this.id = id;
             this.name = name;
-            this.surname = surname;
         }
 
         public int getId() {
@@ -30,10 +26,6 @@ public class Merge {
 
         public String getName() {
             return name;
-        }
-
-        public String getSurname() {
-            return surname;
         }
 
         @Override
@@ -45,12 +37,13 @@ public class Merge {
                 return false;
             }
             User user = (User) o;
-            return id == user.id;
+            return id == user.id
+                    && Objects.equals(name, user.name);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(id);
+            return Objects.hash(id, name);
         }
     }
 }
