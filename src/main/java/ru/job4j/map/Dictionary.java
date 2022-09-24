@@ -10,7 +10,7 @@ public class Dictionary {
         Map<String, List<String>> rsl = new HashMap<>();
         for (String s : strings) {
             String first = String.valueOf(s.charAt(0));
-            rsl.putIfAbsent(first,new ArrayList<>());
+            rsl.putIfAbsent(first, new ArrayList<>());
             rsl.get(first).add(s);
         }
         return rsl;
