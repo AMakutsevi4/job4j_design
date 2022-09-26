@@ -87,7 +87,7 @@ $$;
 select f_update_data(10, 0, 1);
 select f_update_data(0, 0.2, 0);
 
-create or replace function f_delete_data(i_id varchar)
+create or replace function f_delete_data(i_id integer)
     returns void
     language 'plpgsql'
 as
