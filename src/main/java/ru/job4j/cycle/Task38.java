@@ -13,4 +13,5 @@ public class Task38 {
         q.deleteCharAt(q.length() - 1);
         System.out.println(q);
     }
+
 }
