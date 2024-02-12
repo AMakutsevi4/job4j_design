@@ -43,9 +43,9 @@ public class OptionalStream {
 
     public static List<PhoneNumber> collectNumber(List<User> users, int id, String region) {
         return users.stream()
-                .filter(user -> user.getId() == id) // фильтруем все по id
-                .flatMap(user -> user.getNumbers().stream()) // создаем поток фильрованных элементов
-                .filter(user -> user.getPhone().startsWith(region)) // фильтруем номера которые начинаются с region
+                .filter(user -> user.getId() == id)
+                .flatMap(user -> user.getNumbers().stream())
+                .filter(user -> user.getPhone().startsWith(region))
                 .collect(Collectors.toList());
     }
 }

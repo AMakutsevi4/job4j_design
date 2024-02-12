@@ -12,12 +12,9 @@ public class DeleteNode {
 
 
     public void deleteNode(ListNode node) {
-//Данный связанный список будет иметь как минимум два элемента
-//Все значения узлов будут уникальными.
-//Данный узел не будет последним
         ListNode temp = node.next;
         node.val = node.next.val;
         node.next = node.next.next;
-        temp.next = null; //разрывает все ссылки из переданного узла.
+        temp.next = null;
     }
 }
