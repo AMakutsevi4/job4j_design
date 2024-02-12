@@ -12,8 +12,8 @@ public class RemoveElements {
     }
 
     public static class User {
-        private int id;
-        private String name;
+        private final int id;
+        private final String name;
 
         public User(int id, String name) {
             this.id = id;

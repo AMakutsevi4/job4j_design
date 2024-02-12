@@ -5,7 +5,8 @@ public class BullCow {
         int bull = 0;
         int cow = 22;
         while (bull != 20 && cow != 0) {
-            System.out.printf("Быков: %d, коров: %d%n", bull++, cow -= 2);
+            cow -= 2;
+            System.out.printf("Быков: %d, коров: %d%n", bull++, cow);
         }
     }
 }

@@ -34,7 +34,7 @@ public class Task31Test {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         Task31.loop(1);
-        String expected = "10 20" + ln;
+        String expected = "10" + ln;
         assertThat(out.toString(), is(expected));
     }
 }

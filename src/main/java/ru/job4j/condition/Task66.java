@@ -2,6 +2,7 @@ package ru.job4j.condition;
 
 public class Task66 {
     public static void daytime(int number) {
+         /*
         String string;
         switch (number) {
             case 23, 0, 1, 2, 3, 4, 5 -> string = "Ночь";
@@ -11,6 +12,6 @@ public class Task66 {
             default -> string = "Не является часом";
         }
         System.out.println(string);
-
+          */
     }
 }

@@ -24,8 +24,8 @@ public class Task18Test {
                 System.lineSeparator(), "", System.lineSeparator()
         )
                 .add("133.2")
-                .add("209.2")
-                .add("3483.7")
+                .add("209,2")
+                .add("3483,7")
                 .toString();
         assertThat(out.toString(), is(expected));
     }

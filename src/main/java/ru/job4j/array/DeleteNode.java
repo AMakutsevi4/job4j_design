@@ -18,6 +18,6 @@ public class DeleteNode {
         ListNode temp = node.next;
         node.val = node.next.val;
         node.next = node.next.next;
-        temp.next=null;//разрывает все ссылки из переданного узла.
+        temp.next = null; //разрывает все ссылки из переданного узла.
     }
 }

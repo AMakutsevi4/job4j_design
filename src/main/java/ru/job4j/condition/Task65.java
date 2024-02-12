@@ -2,6 +2,7 @@ package ru.job4j.condition;
 
 public class Task65 {
     public static void season(int number) {
+         /*
         String string;
         switch (number) {
             case 12, 1, 2 -> string = "Зима";
@@ -11,5 +12,7 @@ public class Task65 {
             default -> string = "Не является месяцем";
         }
         System.out.println(string);
+
+          */
     }
 }

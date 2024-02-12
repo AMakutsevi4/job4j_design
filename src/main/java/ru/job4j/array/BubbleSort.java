@@ -1,13 +1,30 @@
 package ru.job4j.array;
 
+import java.util.Scanner;
+import java.util.StringJoiner;
+
 public class BubbleSort {
     public static void main(String[] args) {
 
 
-        int[] array = new int[]{64, 42, 73, 41, 32, 53, 16, 24, 57, 42, 74, 55, 36};
-        bubbleSort(array);
-        System.out.println(arrayToString(array));
+//        int[] array = new int[]{64, 42, 73, 41, 32, 53, 16, 24, 57, 42, 74, 55, 36};
+//        bubbleSort(array);
+//        System.out.println(arrayToString(array));
+
+
+        Scanner scanner = new Scanner(System.in);
+            System.out.println("Введите Имя студента");
+            Student student = new Student(scanner.nextLine(), scanner.nextLine(), scanner.nextInt());
+            System.out.println("Введите имя и фамилию студента");
+            Student student1 = new Student(scanner.nextLine(), scanner.nextLine(), scanner.nextInt());
+
+          //     scanner.nextLine();
+
+            System.out.println(student);
+            System.out.println(student1);
+
     }
+
     public static void bubbleSort(int[] array) {
         boolean isSorted = false;
         while (!isSorted) {
@@ -35,4 +52,5 @@ public class BubbleSort {
         sb.append("]");
         return sb.toString();
     }
+
 }

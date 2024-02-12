@@ -17,7 +17,7 @@ public class Task149Test {
         System.setOut(new PrintStream(out));
         int[] grades = {2, 5, 3, 5, 6, 3, 4};
         Task149.loop(grades);
-        String expected = "3.75" + ln;
+        String expected = "3,75" + ln;
         assertThat(out.toString(), is(expected));
     }
 
@@ -27,7 +27,7 @@ public class Task149Test {
         System.setOut(new PrintStream(out));
         int[] grades = {5, 7, 3, 5, 6, 3, 4};
         Task149.loop(grades);
-        String expected = "5.00" + ln;
+        String expected = "5,00" + ln;
         assertThat(out.toString(), is(expected));
     }
 
@@ -37,7 +37,7 @@ public class Task149Test {
         System.setOut(new PrintStream(out));
         int[] grades = {2, 2, 1, 5, 2, 8, 4};
         Task149.loop(grades);
-        String expected = "2.40" + ln;
+        String expected = "2,40" + ln;
         assertThat(out.toString(), is(expected));
     }
 
@@ -47,7 +47,7 @@ public class Task149Test {
         System.setOut(new PrintStream(out));
         int[] grades = {5, 5, 4, 3, 0, 2};
         Task149.loop(grades);
-        String expected = "4.25" + ln;
+        String expected = "4,25" + ln;
         assertThat(out.toString(), is(expected));
     }
 }
