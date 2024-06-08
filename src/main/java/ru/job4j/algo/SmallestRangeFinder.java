@@ -5,32 +5,25 @@ import java.util.Arrays;
 public class SmallestRangeFinder {
 
     public static int[] findSmallestRange(int[] nums, int k) {
-        int index = 0;
+        int index = 1;
         int[] data = new int[2];
-        int minusOne = 0;
-        int last = nums.length - 1;
+        int left = 0;
+        int right = 0;
 
-        while (index < 1) {
-            for (int i = 1; i < nums.length; i++, minusOne++) {
-
-                if (nums[last] == nums[last - 1]) {
-                    index = 2;
-                    continue;
-                }
-
-                if (nums[i] == k && nums[i - 1] != k && nums[k + 1] != k) {
-                    data[0] = i - 1;
-                    data[1] = i + 1;
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (index != k) {
+                right++;
+                if (nums[i] < nums[right]) {
                     index++;
-                }
-                if (nums[minusOne] == nums[i]) {
-                    data[0] = nums[minusOne];
-                    data[1] = nums[--last];
-                    index++;
+                } else {
+                    left = right;
+                    index = 1;
                 }
             }
+                data[0] = left;
+                data[1] = right;
         }
-        return index == 1 ? data : null;
+        return index == k ? data : null;
     }
 
     public static void main(String[] args) {
