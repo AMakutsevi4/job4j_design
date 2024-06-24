@@ -9,7 +9,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class Task146Test {
-    public String ln = System.lineSeparator();
+    public String ln = "\n";
 
     @Test
     public void when60And80And80And70And65Then4And290AndBothMany() {

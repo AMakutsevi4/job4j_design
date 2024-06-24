@@ -7,10 +7,10 @@ public class Task1 {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("Hello World! " + Thread.currentThread().getName());
 
-        MyThread myThread = new MyThread(); //new
-        myThread.start(); //ready
+        MyThread myThread = new MyThread();
+        myThread.start();
 
-     //   Thread.sleep(1_000);
+
         myThread.join();
 
         MyThreadRunnable myThreadRunnable = new MyThreadRunnable();
@@ -24,10 +24,10 @@ public class Task1 {
 
 class MyThread extends Thread {
     @Override
-    public void run() { //running
+    public void run() {
         for (int i = 0; i < 100; i++) {
             System.out.println(i + " " + Thread.currentThread().getName());
-          //  Thread.yield();
+
         }
     }
 }

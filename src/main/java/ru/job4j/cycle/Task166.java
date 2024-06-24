@@ -16,7 +16,7 @@ public class Task166 {
     private static int sumDel(int num) {
         int rsl = 0;
         for (int i = 1; i < num; i++) {
-            if (num % i == 0 && i % 2 !=0 ) {
+            if (num % i == 0 && i % 2 != 0) {
                 rsl += i;
             }
         }

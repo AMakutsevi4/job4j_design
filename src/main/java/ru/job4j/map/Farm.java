@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Farm {
     public static int sumLegs(Map<Animal, Integer> data) {
         int rsl = 0;
-        for(Animal animal : data.keySet()) {
+        for (Animal animal : data.keySet()) {
             rsl += animal.getLegs() * data.get(animal);
         }
         return rsl;
@@ -32,8 +32,12 @@ public class Farm {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
             Animal animal = (Animal) o;
             return Objects.equals(name, animal.name);
         }
