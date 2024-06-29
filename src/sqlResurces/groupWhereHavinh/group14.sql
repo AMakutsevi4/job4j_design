@@ -1,20 +1,20 @@
-CREATE TABLE orders1
+CREATE TABLE scores
 (
-    id         SERIAL PRIMARY KEY,
-    client_id  INT,
-    order_year INT,
-    amount     INT
+    student_id   SERIAL PRIMARY KEY,
+    student_name VARCHAR(50),
+    subject      VARCHAR(50),
+    score        INT
 );
 
-INSERT INTO orders1 (client_id, order_year, amount)
-VALUES (1, 2023, 100),
-       (2, 2023, 150),
-       (1, 2023, 200),
-       (3, 2023, 50),
-       (2, 2023, 120);
+INSERT INTO scores (student_name, subject, score)
+VALUES ('Alice', 'Math', 85),
+       ('Bob', 'Math', 78),
+       ('Alice', 'Physics', 90),
+       ('Bob', 'Physics', 88),
+       ('Charlie', 'Math', 92),
+       ('Charlie', 'Physics', 95);
 
-SELECT client_id, COUNT(amount) as count
-FROM orders1
-WHERE order_year = 2023
-GROUP BY client_id
-ORDER BY client_id DESC;
+SELECT subject, COUNT(score) as count, MAX(score) as max_grade
+FROM scores
+WHERE score > 85
+GROUP BY subject;
