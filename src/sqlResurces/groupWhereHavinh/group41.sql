@@ -61,7 +61,7 @@ JOIN film_companies6 fc on fc.id = m.company_id
 JOIN directors6 d on d.id = m.director_id
 WHERE m.director_id > 3
 GROUP BY fc.name
-HAVING AVG(m.budget) > 4000000
+HAVING AVG(m.budget) > 4
 ORDER BY AVG(m.budget) DESC;
 
 
